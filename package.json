@@ -1,7 +1,7 @@
 {
   "name": "level-tier",
   "version": "0.0.1",
-  "description": "Convinience LevelDB plugin for namespacing keys in tiers for blazing fast range queries",
+  "description": "Convenience LevelUP plugin for namespacing keys in tiers and achieving blazing fast range queries.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

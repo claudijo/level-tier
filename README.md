@@ -1,5 +1,5 @@
 # level-tier
-Convenience LevelDB plugin for namespacing keys in tiers for blazing fast range
+Convenience LevelUP plugin for namespacing keys in tiers and achieving blazing fast range
 queries.
 
 # License
