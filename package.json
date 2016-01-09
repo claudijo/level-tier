@@ -29,5 +29,9 @@
   "bugs": {
     "url": "https://github.com/claudijo/level-tier/issues"
   },
-  "homepage": "https://github.com/claudijo/level-tier"
+  "homepage": "https://github.com/claudijo/level-tier",
+  "files": [
+    "LICENSE",
+    "index.js"
+  ]
 }
