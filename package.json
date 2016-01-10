@@ -3,8 +3,11 @@
   "version": "0.0.1",
   "description": "Convenience LevelUP plugin for namespacing keys in tiers and achieving blazing fast range queries.",
   "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --check-leaks --reporter spec --bail --watch"
   },
   "repository": {
     "type": "git",
@@ -33,5 +36,10 @@
   "files": [
     "LICENSE",
     "index.js"
-  ]
+  ],
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "mocha": "^2.3.4",
+    "sinon": "^1.17.2"
+  }
 }
