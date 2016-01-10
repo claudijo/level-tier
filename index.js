@@ -31,6 +31,5 @@ module.exports = function(db) {
     return db.tier(tiers, options) + delimiter + terminator;
   };
 
-
   return db;
 };

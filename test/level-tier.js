@@ -10,7 +10,6 @@ var levelupFake = function() {
 }
 
 describe('level-tier', function() {
-
   it('should return underlying when adding self', function() {
     var db = {};
     expect(leveltier(db)).to.be(db);
@@ -97,7 +96,5 @@ describe('level-tier', function() {
         expect(key).to.be('first!second!~');
       })
     });
-
-
   });
 });
