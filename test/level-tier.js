@@ -1,13 +1,5 @@
 var expect = require('expect.js');
-var sinon = require('sinon');
 var leveltier = require('..');
-
-var levelupFake = function() {
-  return {
-    put: function(key, data, options, callback) {},
-    createReadStream: function(options) {}
-  };
-}
 
 describe('level-tier', function() {
   it('should return underlying when adding self', function() {
@@ -17,7 +9,7 @@ describe('level-tier', function() {
 
   describe('tier', function() {
     beforeEach(function() {
-      this.db = levelupFake();
+      this.db = {};
       leveltier(this.db);
     });
 
