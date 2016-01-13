@@ -1,7 +1,7 @@
 # level-tier
 
-Convenience LevelUP plugin for namespacing keys in tiers and achieving blazing fast range
-queries.
+Minimalistic LevelUP utility for namespacing keys and facilitating blazing fast
+range queries.
 
 ## Test
 

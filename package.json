@@ -1,7 +1,7 @@
 {
   "name": "level-tier",
   "version": "0.0.1",
-  "description": "Convenience LevelUP plugin for namespacing keys in tiers and achieving blazing fast range queries.",
+  "description": "Minimalistic LevelUP utility for namespacing keys.",
   "main": "index.js",
   "directories": {
     "test": "test"
