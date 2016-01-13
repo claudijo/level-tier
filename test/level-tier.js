@@ -62,4 +62,24 @@ describe('level-tier', function() {
       expect(key).to.be('first!second!~');
     })
   });
+
+  describe('parse', function() {
+    it('should parse key into tiers array', function() {
+      var key = 'first\x00second';
+      var tiers = ['first', 'second'];
+
+      expect(leveltier.parse(key)).to.eql(tiers);
+    });
+  });
+
+  describe('parse', function() {
+    it('should parse key with custom delimiter into tiers array', function() {
+      var key = 'first!second';
+      var tiers = ['first', 'second'];
+
+      expect(leveltier.parse(key, {
+        delimiter: '!'
+      })).to.eql(tiers);
+    });
+  });
 });

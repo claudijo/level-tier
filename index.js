@@ -29,4 +29,14 @@ leveltier.gte = function(tiers, options) {
   return joinTiers(tiers, options) + delimiter + terminator;
 };
 
+leveltier.parse = function(key, options) {
+  var delimiter;
+
+  options = options || {};
+
+  delimiter = options.delimiter || DEFAULT_DELIMITER;
+
+  return key.split(delimiter);
+}
+
 module.exports = leveltier;
