@@ -1,50 +1,26 @@
-var DEFAULT_DELIMITER = '\x00';
-var DEFAULT_TERMINATOR = '\xff';
+var LOWER_BOUND = '\x00';
+var UPPER_BOUND = '\xff';
 
-var joinTiers = function(tiers, options) {
-  var delimiter;
-
-  options = options || {};
-  delimiter = options.delimiter || DEFAULT_DELIMITER;
-
+var joinTiers = function(tiers) {
   if (!Array.isArray(tiers)) {
     throw new Error('Invalid tiers: ' + tiers);
   }
 
-  return tiers.join(delimiter);
+  return tiers.join(LOWER_BOUND);
 };
 
 var leveltier = joinTiers;
 
-leveltier.gte = function(tiers, options) {
-  var delimiter;
-
-  options = options || {};
-
-  delimiter = options.delimiter || DEFAULT_DELIMITER;
-
-  return joinTiers(tiers, options) + delimiter;
+leveltier.gte = function(tiers) {
+  return joinTiers(tiers) + LOWER_BOUND;
 };
 
-leveltier.lte = function(tiers, options) {
-  var delimiter, terminator;
-
-  options = options || {};
-
-  delimiter = options.delimiter || DEFAULT_DELIMITER;
-  terminator = options.terminator || DEFAULT_TERMINATOR;
-
-  return joinTiers(tiers, options) + delimiter + terminator;
+leveltier.lte = function(tiers) {
+  return joinTiers(tiers) + LOWER_BOUND + UPPER_BOUND;
 };
 
-leveltier.parse = function(key, options) {
-  var delimiter;
-
-  options = options || {};
-
-  delimiter = options.delimiter || DEFAULT_DELIMITER;
-
-  return key.split(delimiter);
+leveltier.parse = function(key) {
+  return key.split(LOWER_BOUND);
 }
 
 module.exports = leveltier;

@@ -23,15 +23,6 @@ describe('level-tier', function() {
     expect(key).to.be('first\x00second');
   });
 
-  it('should create key from multiple tiers with custom delimiter', function() {
-    var tiers = ['first', 'second'];
-    var key = leveltier(tiers, {
-      delimiter: '!'
-    });
-
-    expect(key).to.be('first!second')
-  });
-
   describe('gte', function() {
     it('should create key from single tier', function() {
       var tiers = ['first'];
@@ -45,15 +36,6 @@ describe('level-tier', function() {
 
       expect(key).to.be('first\x00second\x00');
     });
-
-    it('should create key from multiple tiers with custom delimiter', function() {
-      var tiers = ['first', 'second'];
-      var key = leveltier.gte(tiers, {
-        delimiter: '!'
-      });
-
-      expect(key).to.be('first!second!');
-    })
   });
 
   describe('lte', function() {
@@ -69,16 +51,6 @@ describe('level-tier', function() {
 
       expect(key).to.be('first\x00second\x00\xff');
     });
-
-    it('should create key from multiple tiers with custom delimiter and terminator', function() {
-      var tiers = ['first', 'second'];
-      var key = leveltier.lte(tiers, {
-        delimiter: '!',
-        terminator: '~'
-      });
-
-      expect(key).to.be('first!second!~');
-    });
   });
 
   describe('parse', function() {
@@ -87,17 +59,6 @@ describe('level-tier', function() {
       var tiers = ['first', 'second'];
 
       expect(leveltier.parse(key)).to.eql(tiers);
-    });
-  });
-
-  describe('parse', function() {
-    it('should parse key with custom delimiter into tiers array', function() {
-      var key = 'first!second';
-      var tiers = ['first', 'second'];
-
-      expect(leveltier.parse(key, {
-        delimiter: '!'
-      })).to.eql(tiers);
     });
   });
 });
