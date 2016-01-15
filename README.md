@@ -41,7 +41,7 @@ var leveltier = require('level-tier')
 ## Creating namespaced key
 
 ```js
-leveltier(['alice', new Date().toISOString()]); // -> alice\x002016-01-15T09:32:19.118Z
+leveltier(['alice', Date.now()]); // -> alice\x001452853068222
 ```
 
 ## Creating range start key
@@ -65,7 +65,7 @@ leveltier.lte(['alice']); // -> alice\x00\xff
 ## Parsing a key
 
 ```js
-leveltier.parse('alice\x002016-01-15T09:32:19.118Z'); // -> ['alice', '2016-01-15T09:32:19.118Z']
+leveltier.parse('alice\x001452853068222'); // -> ['alice', '1452853068222']
 ```
 
 ## Test
