@@ -11,8 +11,8 @@ sorting in LevelDB/LevelUP, see
 ## Caveat
 
 You might want to zero pad numerical values (such as arbitrary timestamps) to
-have a uniform length if using them as parts of a namespaced key, as seen in the
-following example.
+have a uniform length if using them as parts of a namespaced key. Failing to do
+so might result in unexpected ordering, as emphasised by the example below.
 
 `'10' < '2' // -> true`
 
