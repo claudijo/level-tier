@@ -8,6 +8,16 @@ range queries. For a good explanation of namspacing and lexicographical key
 sorting in LevelDB/LevelUP, see
 [Lexicographical Key Sorting in LevelDB](http://luke.xxx/post/52916123542/lexicographical-key-sorting-in-leveldb).
 
+## Caveat
+
+You might want to zero pad numerical values (such as arbitrary timestamps) to
+have a uniform length if using them as parts of a namespaced key, as seen in the
+following example.
+
+`'10' < '2' // -> true`
+
+`'10' < '02' // -> false`
+
 ## Important note
 
 This module is a minimalistic and naive implementation namespacing
