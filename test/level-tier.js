@@ -32,35 +32,53 @@ describe('level-tier', function() {
     expect(key).to.be('first!second')
   });
 
-  describe('lte', function() {
-    it('shouls expose tier.lte as a shortcut to tier', function() {
-      expect(leveltier.lte).to.be(leveltier);
-    });
-  });
-
   describe('gte', function() {
     it('should create key from single tier', function() {
       var tiers = ['first'];
 
-      expect(leveltier.gte(tiers)).to.be('first\x00\xff');
+      expect(leveltier.gte(tiers)).to.be('first\x00');
     });
 
     it('should create key from multiple tiers', function() {
       var tiers = ['first', 'second'];
       var key = leveltier.gte(tiers);
 
+      expect(key).to.be('first\x00second\x00');
+    });
+
+    it('should create key from multiple tiers with custom delimiter', function() {
+      var tiers = ['first', 'second'];
+      var key = leveltier.gte(tiers, {
+        delimiter: '!'
+      });
+
+      expect(key).to.be('first!second!');
+    })
+  });
+
+  describe('lte', function() {
+    it('should create key from single tier', function() {
+      var tiers = ['first'];
+
+      expect(leveltier.lte(tiers)).to.be('first\x00\xff');
+    });
+
+    it('should create key from multiple tiers', function() {
+      var tiers = ['first', 'second'];
+      var key = leveltier.lte(tiers);
+
       expect(key).to.be('first\x00second\x00\xff');
     });
 
     it('should create key from multiple tiers with custom delimiter and terminator', function() {
       var tiers = ['first', 'second'];
-      var key = leveltier.gte(tiers, {
+      var key = leveltier.lte(tiers, {
         delimiter: '!',
         terminator: '~'
       });
 
       expect(key).to.be('first!second!~');
-    })
+    });
   });
 
   describe('parse', function() {

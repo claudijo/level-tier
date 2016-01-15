@@ -16,9 +16,17 @@ var joinTiers = function(tiers, options) {
 
 var leveltier = joinTiers;
 
-leveltier.lte = joinTiers;
-
 leveltier.gte = function(tiers, options) {
+  var delimiter;
+
+  options = options || {};
+
+  delimiter = options.delimiter || DEFAULT_DELIMITER;
+
+  return joinTiers(tiers, options) + delimiter;
+};
+
+leveltier.lte = function(tiers, options) {
   var delimiter, terminator;
 
   options = options || {};
