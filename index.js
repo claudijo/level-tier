@@ -1,10 +1,19 @@
 var LOWER_BOUND = '\x00';
-var UPPER_BOUND = '\xff';
+var UPPER_BOUND = '\uffff';
+var boundMatch = new RegExp(LOWER_BOUND + '|' + UPPER_BOUND, 'g');
 
 var joinTiers = function(tiers) {
   if (!Array.isArray(tiers)) {
     throw new Error('Invalid tiers: ' + tiers);
   }
+
+  tiers = tiers.map(function(tier) {
+    if (typeof tier === 'number') {
+      console.warn('Avoid using numbers as namespaced keys for consistent ' +
+        'sorting order');
+    }
+    return tier.toString().replace(boundMatch, '');
+  });
 
   return tiers.join(LOWER_BOUND);
 };
