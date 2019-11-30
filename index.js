@@ -32,4 +32,15 @@ leveltier.parse = function(key) {
   return key.split(LOWER_BOUND);
 }
 
+leveltier.now = function({ maxLength = 20, timestamp } =  {}) {
+  const now = timestamp && timestamp.toString() || Date.now().toString();
+  const padAmt = maxLength - now.length;
+  if (padAmt < 0) {
+    throw new Error(
+      `Timestamp maxLength not long enough. Provide a value greater than ${maxLength}.`
+    );
+  }
+  return "0".repeat(padAmt).concat(now);
+}
+
 module.exports = leveltier;

@@ -93,4 +93,34 @@ describe('level-tier', function() {
       expect(leveltier.parse(key)).to.eql(tiers);
     });
   });
+
+  describe("now padding", function() {
+    it("should pad timestamps", function() {
+      const now = Date.now();
+      const lNow = leveltier.now();
+      expect(lNow).to.not.eql(now.toString());
+      expect(lNow.length).to.eql(20);
+    });
+
+    it("should pad timestamps uniformly", function() {
+      const now = Date.now().toString();
+      const now2 = now.concat("29");
+      const lNow = leveltier.now({ timestamp: now });
+      const lNow2 = leveltier.now({ timestamp: now2 });
+
+      expect(lNow.length).to.eql(lNow2.length);
+    });
+
+    it("should throw when timestamp length exceeds maxLength", function() {
+      expect(() => {
+        leveltier.now({
+          timestamp: Date.now()
+            .toString()
+            .concat("3".repeat(20))
+        });
+      }).to.throwException(
+        /Timestamp maxLength not long enough. Provide a value greater than 20./
+      );
+    });
+  });
 });

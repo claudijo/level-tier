@@ -15,6 +15,30 @@ so might result in unexpected ordering, as emphasised by the example below.
 
 level-tier will warn if using numbers as namespace keys.
 
+## Uniform length timestamp padding
+
+level-tier includes a convenience method that produces uniform length timestamps.
+
+```js
+  leveltier.now();
+
+  // Date.now() :        1575146509497
+  // level.now(): 00000001575146509497
+```
+
+This function also accepts a timestamp to pad when creating a range Key. 
+Putting this together, writing and retrieval would look like this
+
+```js
+    // writing data
+      const key = leveltier(['data', leveltier.now()])
+      mydb.put(key, data)
+    
+    // retrieving data after some lower bound
+      const startkey = leveltier.gte(['data', leveltier.now({timestamp:1575156550378})])
+      mydb.createReadStream({gt:startkey})
+```
+
 ## Important note
 
 This module is a minimalistic and naive implementation namespacing
