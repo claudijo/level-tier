@@ -94,25 +94,25 @@ describe('level-tier', function() {
     });
   });
 
-  describe("now padding", function() {
+  describe('now padding', function() {
     it("should pad timestamps", function() {
-      const now = Date.now();
-      const lNow = leveltier.now();
+      var now = Date.now();
+      var lNow = leveltier.now();
       expect(lNow).to.not.eql(now.toString());
       expect(lNow.length).to.eql(20);
     });
 
-    it("should pad timestamps uniformly", function() {
-      const now = Date.now().toString();
-      const now2 = now.concat("29");
-      const lNow = leveltier.now({ timestamp: now });
-      const lNow2 = leveltier.now({ timestamp: now2 });
+    it('should pad timestamps uniformly', function() {
+      var now = Date.now().toString();
+      var now2 = now.concat('29');
+      var lNow = leveltier.now({ timestamp: now });
+      var lNow2 = leveltier.now({ timestamp: now2 });
 
       expect(lNow.length).to.eql(lNow2.length);
     });
 
-    it("should throw when timestamp length exceeds maxLength", function() {
-      expect(() => {
+    it('should throw when timestamp length exceeds maxLength', function() {
+      expect(function() {
         leveltier.now({
           timestamp: Date.now()
             .toString()
