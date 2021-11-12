@@ -1,6 +1,6 @@
 {
   "name": "level-tier",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Minimalistic LevelUP utility for namespacing keys.",
   "main": "index.js",
   "directories": {
