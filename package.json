@@ -35,7 +35,8 @@
   "homepage": "https://github.com/claudijo/level-tier",
   "files": [
     "LICENSE",
-    "index.js"
+    "index.js",
+    "polyfill"
   ],
   "devDependencies": {
     "expect.js": "^0.3.1",
