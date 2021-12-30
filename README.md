@@ -17,16 +17,18 @@ level-tier will warn if using numbers as namespace keys.
 
 ## Uniform length timestamp padding
 
-level-tier includes a convenience method that produces uniform length timestamps.
+level-tier includes a convenience method `leveltier.now()` that produces uniform length timestamps.
 
 ```js
-  leveltier.now();
-
-  // Date.now() :         1575146509497
-  // level.now(): '00000001575146509497'
+  Date.now() // -> 1575146509497
+  leveltier.now() // -> '00000001575146509497'
 ```
 
 This function also accepts a timestamp to pad when creating a range Key. 
+```js
+  leveltier.now({ timestamp: 1575146509497 }) // -> '00000001575146509497'
+```
+
 Putting this together, writing and retrieval would look like this
 
 ```js
@@ -35,7 +37,7 @@ Putting this together, writing and retrieval would look like this
       mydb.put(key, data)
     
     // retrieving data after some lower bound
-      var startkey = leveltier.gte(['data', leveltier.now({ timestamp:1575156550378 })])
+      var startkey = leveltier.gte(['data', leveltier.now({ timestamp: 1575156550378 })])
       mydb.createReadStream({ gt:startkey })
 ```
 
@@ -59,13 +61,13 @@ structures that sort element-wise", see
 Import the module
 
 ```js
-var leveltier = require('level-tier')
+const leveltier = require('level-tier')
 ```
 
 ## Creating namespaced key
 
 ```js
-leveltier(['alice', Date.now()]); // -> alice\x001452853068222
+leveltier(['Alice', 'Cooper']); // -> alice\x00cooper
 ```
 
 ## Creating range start key
@@ -74,7 +76,7 @@ The following constructs a start key that can be used as the `gte` option
 when creating a read stream in LevelUP.
 
 ```js
-leveltier.gte(['alice']); // -> alice\x00
+leveltier.gte(['Alice']); // -> Alice\x00
 ```
 
 ## Creating range end key
@@ -83,13 +85,17 @@ The following constructs an end key that can be used as the `lte` option when
 creating a read stream in LevelUP.
 
 ```js
-leveltier.lte(['alice']); // -> alice\x00\uffff
+leveltier.lte(['Alice']); // -> Alice\x00\uffff
 ```
+
+## Combining start and end keys
+Combining `{gte: leveltier.gte(['Alice']), lte: leveltier.lte(['Alice'])}` when creating a read stream 
+in LevelUP would yield all documents that have "Alice" as the first part in the name spaced key.
 
 ## Parsing a key
 
 ```js
-leveltier.parse('alice\x001452853068222'); // -> ['alice', '1452853068222']
+leveltier.parse('Alice\x00Cooper'); // -> ['Alice', 'Cooper']
 ```
 
 ## Test
